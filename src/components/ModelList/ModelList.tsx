@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     gridList: {
       width: 300,
       height: '100%',
-      maxHeight: 600,
     },
   }));
 
@@ -49,7 +48,7 @@ function ModelList( { brand, models, frameTapped }: Props) {
                 <GridListTile
                     key={model.name}
                     cols={1}
-                    style={{ height: '150px' }}
+                    style={{height: '100%'}}
                 >
                     <Button 
                         key={model.name} 
