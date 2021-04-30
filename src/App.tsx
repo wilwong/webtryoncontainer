@@ -4,14 +4,14 @@ import ProductView from './components/ProductView/ProductView';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import purple from '@material-ui/core/colors/purple';
+import blue from '@material-ui/core/colors/blue';
 import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: purple[500],
+      main: blue[400],
     },
     secondary: {
       main: green[500],

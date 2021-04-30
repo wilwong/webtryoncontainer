@@ -4,6 +4,8 @@ export const en = {
 	"title": "Product Catalogue of {{brand}}",
 
 	"models.title": "Frames",
+	"lenses.title": "Lenses",
+	"plasticcolors.title": "Colors",
 
 	"model.subtitle": "by {{brand}}",
 

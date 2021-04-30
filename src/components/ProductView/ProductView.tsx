@@ -12,7 +12,9 @@ import './ProductView.css'
 import ModelList from "../ModelList/ModelList"
 
 import AppData from '../../modelTypes/AppData'
+import Material from '../../modelTypes/Material'
 import { cmsGet } from '../../API'
+import ColorHList from '../ColorHList/ColorHList';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,10 +53,15 @@ function ProductView( { brand }: Props) {
     const { t } = useTranslation();
 
     const [appData, setAppData] = React.useState<AppData | undefined>(undefined);
+    const [glasses, setGlasses] = React.useState<Material[] | undefined>(undefined);
+    const [colors, setColors] = React.useState<Material[] | undefined>(undefined);
 
     React.useEffect(() => {
         const fetch = async (brand: string) => {
-            setAppData(await cmsGet(brand, 'app-data'))
+            const appData = await cmsGet(brand, 'app-data') as AppData
+            setGlasses(appData.materials.filter(mat => mat.type === 'glas'))
+            setColors(appData.materials.filter(mat => mat.type === 'plastic'))
+            setAppData(appData)
         }
 
         document.title = `${brand} - ${t("tryon")}`
@@ -85,20 +92,23 @@ function ProductView( { brand }: Props) {
                         :
                         <CircularProgress />
                 }
-
             </Paper>
         </Grid>
-        <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={6}>
+            {
+                colors ?
+                    <ColorHList brand={brand} materials={colors} titleTerm="plasticcolors.title"/>
+                    :
+                    <CircularProgress />
+            }
         </Grid>
-        <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-            <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={6}>
+            {
+                glasses ?
+                    <ColorHList brand={brand} materials={glasses} titleTerm="lenses.title"/>
+                    :
+                    <CircularProgress />
+            }
         </Grid>
     </Grid>
 }

@@ -4,6 +4,8 @@ export const de = {
 	"title": "Produkte von {{brand}}",
 
 	"models.title": "Modelle",
+	"lenses.title": "Linsenglas",
+	"plasticcolors.title": "Farben",
 
 	"model.subtitle": "von {{brand}}",
 
