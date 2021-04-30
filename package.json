@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "aws s3 sync build/ s3://looc-web-tests/webshop --delete --acl public-read --region eu-central-1"
   },
   "eslintConfig": {
     "extends": [
