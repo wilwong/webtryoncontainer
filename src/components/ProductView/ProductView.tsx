@@ -51,6 +51,7 @@ type Props = {
 function ProductView( { brand }: Props) {
     const classes = useStyles();
     const { t } = useTranslation();
+    const domain = 'https://test.looc.io';
 
     const [appData, setAppData] = React.useState<AppData | undefined>(undefined);
     const [glasses, setGlasses] = React.useState<Material[] | undefined>(undefined);
@@ -68,6 +69,26 @@ function ProductView( { brand }: Props) {
         fetch(brand)
     }, [t, brand])
 
+    const SendMessage = (type: string, identifier: string) => {
+        const iframe = document.getElementById('Try-On-Frame') as HTMLIFrameElement
+        iframe.contentWindow?.postMessage({ type: type, id: identifier}, domain)
+    }
+
+    const onFrameTapped = (identifier: string) => {
+        console.log("Frame tapped: " + identifier)
+        SendMessage('f', identifier)
+    }
+
+    const onPlasticTapped = (identifier: string) => {
+        console.log("Plastic tapped: " + identifier)
+        SendMessage('p', identifier)
+    }
+
+    const onGlasTapped = (identifier: string) => {
+        console.log("Glas tapped: " + identifier)
+        SendMessage('l', identifier)
+    }
+
     return <Grid container spacing={3}>
         <Grid item xs={12}>
             <Typography variant="h3">
@@ -77,10 +98,11 @@ function ProductView( { brand }: Props) {
         <Grid item xs={9}>
             <div className={classes.tryOnContainer}>
                 <iframe
+                    id="Try-On-Frame"
                     allow="camera"
                     className={classes.tryonIframe}
                     title="Web-TryOn"
-                    src="https://test.looc.io/forest/index.html"
+                    src={`${domain}/forest/index.html`}
                 />
             </div>
         </Grid>
@@ -88,7 +110,7 @@ function ProductView( { brand }: Props) {
             <Paper className={classes.paper}>
                 {
                     appData ?
-                        <ModelList brand={brand} models={appData.models} />
+                        <ModelList brand={brand} models={appData.models} frameTapped={onFrameTapped} />
                         :
                         <CircularProgress />
                 }
@@ -97,7 +119,12 @@ function ProductView( { brand }: Props) {
         <Grid item xs={6}>
             {
                 colors ?
-                    <ColorHList brand={brand} materials={colors} titleTerm="plasticcolors.title"/>
+                    <ColorHList
+                        brand={brand}
+                        materials={colors}
+                        titleTerm="plasticcolors.title"
+                        matTapped={onPlasticTapped}
+                    />
                     :
                     <CircularProgress />
             }
@@ -105,7 +132,12 @@ function ProductView( { brand }: Props) {
         <Grid item xs={6}>
             {
                 glasses ?
-                    <ColorHList brand={brand} materials={glasses} titleTerm="lenses.title"/>
+                    <ColorHList
+                        brand={brand}
+                        materials={glasses}
+                        titleTerm="lenses.title"
+                        matTapped={onGlasTapped}
+                    />
                     :
                     <CircularProgress />
             }

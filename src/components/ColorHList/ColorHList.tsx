@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import Material from '../../modelTypes/Material'
 
+import { Button } from "@material-ui/core";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -14,6 +15,7 @@ type Props = {
     brand: string,
     materials: Material[]
     titleTerm: string,
+    matTapped: (identifier: string) => void
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -72,6 +74,7 @@ function ColorBlock({material}: {material: Material}) {
         </div>
     } else {
         return <div style= {{
+            minHeight: '132px',
             width: '100%',
             height: '100%',
             backgroundColor: material.parameters.hexValue
@@ -79,7 +82,7 @@ function ColorBlock({material}: {material: Material}) {
     }
 }
 
-function ColorHList({ brand, materials, titleTerm }: Props) {
+function ColorHList({ brand, materials, titleTerm, matTapped }: Props) {
     const classes = useStyles();
 
     const { t, i18n: { language } } = useTranslation();
@@ -91,25 +94,35 @@ function ColorHList({ brand, materials, titleTerm }: Props) {
         <div className={classes.root}>
             <GridList className={classes.gridList} cols={3.5}>
                 {materials.map((mat) => (
-                    <GridListTile key={mat.identifier} style={{ width: '132px', height: '100%' }}>
-                        {
-                            mat.image ?
-                                <img className={classes.tileImg} src={mat.image} alt={mat.identifier} />
-                                :
-                                <ColorBlock material={mat} />
-                        }
-                        <GridListTileBar
-                            title={(mat.localizedNames && mat.localizedNames[language]) || mat.identifier}
-                            classes={{
-                                root: classes.titleBar,
-                                title: classes.title,
-                            }}
-                        // actionIcon={
-                        //     <IconButton aria-label={`star ${tile.title}`}>
-                        //         <StarBorderIcon className={classes.title} />
-                        //     </IconButton>
-                        // }
-                        />
+                    <GridListTile
+                        key={mat.identifier}
+                        style={{ width: '132px', height: '100%' }}
+                    >
+                        <Button
+                            key={mat.identifier}
+                            onClick={() => matTapped(mat.identifier)}
+                            style={{ padding: '0px 0px', width: '100%', height: '100%' }}
+                        >
+                            {
+                                mat.image ?
+                                    <img className={classes.tileImg} src={mat.image} alt={mat.identifier} />
+                                    :
+                                    <ColorBlock material={mat} />
+                            }
+                            <GridListTileBar
+                                title={(mat.localizedNames && mat.localizedNames[language]) || mat.identifier}
+                                classes={{
+                                    root: classes.titleBar,
+                                    title: classes.title,
+                                }}
+                            // actionIcon={
+                            //     <IconButton aria-label={`star ${tile.title}`}>
+                            //         <StarBorderIcon className={classes.title} />
+                            //     </IconButton>
+                            // }
+                            />
+                        </Button>
+
                     </GridListTile>
                 ))}
             </GridList>
