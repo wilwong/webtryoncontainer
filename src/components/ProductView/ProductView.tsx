@@ -97,13 +97,17 @@ function ProductView( { brand }: Props) {
         </Grid>
         <Grid item xs={9}>
             <div className={classes.tryOnContainer}>
-                <iframe
-                    id="Try-On-Frame"
-                    allow="camera"
-                    className={classes.tryonIframe}
-                    title="Web-TryOn"
-                    src={`${domain}/reframd/index.html?c=kickstarter&f=moni`}
-                />
+                {glasses ?
+                    <iframe
+                        id="Try-On-Frame"
+                        allow="camera"
+                        className={classes.tryonIframe}
+                        title="Web-TryOn"
+                        src={`${domain}/${brand}/index.html?f=${glasses[0].identifier}`}
+                    />
+                    :
+                    <CircularProgress />
+                }
             </div>
         </Grid>
         <Grid item xs={3}>

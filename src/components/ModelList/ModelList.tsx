@@ -28,10 +28,19 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
     },
     gridList: {
-      width: 300,
-      height: '100%',
+        width: 300,
+        [theme.breakpoints.down('sm')]: {
+            maxHeight: 420,
+          },
+          [theme.breakpoints.up('md')]: {
+            maxHeight: 620,
+          },
+          [theme.breakpoints.up('lg')]: {
+            maxHeight: 720,
+          },
+        height: '100%',
     },
-  }));
+}));
 
 
 function ModelList( { brand, models, frameTapped }: Props) {

@@ -7,6 +7,22 @@ import { ThemeProvider } from '@material-ui/styles';
 import blue from '@material-ui/core/colors/blue';
 import green from '@material-ui/core/colors/green';
 
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
 const theme = createMuiTheme({
   palette: {
     type: "dark",
@@ -19,16 +35,46 @@ const theme = createMuiTheme({
   },
 });
 
-function App() {
+const brands = [
+  {title: "My LooC", term: "loocfun"},
+  {title: "Reframd", term: "reframd"},
+  {title: "DOM VETRO", term: "domvetro"},
+]
 
-  const [brand, setBrand] = React.useState("reframd");
+function App() {
+  const classes = useStyles();
+
+  const [brand, setBrand] = React.useState<string | undefined>(undefined);
+
+  const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setBrand(event.target.value as string);
+};
 
   return (
     <div className="App">
       <header className="App-header">
         <ThemeProvider theme={theme}>
           <div className="container">
-            <ProductView brand={brand} />
+            {brand
+              ?
+              <ProductView brand={brand} />
+              :
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-label">Brand</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={brand}
+                  onChange={handleSelectChange}
+                >
+                  <MenuItem value={undefined}>None</MenuItem>
+                  {brands.map( brand =>
+                    <MenuItem value={brand.term}>{ brand.title }</MenuItem>
+                  )}
+                </Select>
+              </FormControl>
+            }
+            
           </div>
         </ThemeProvider>
       </header>
