@@ -46,9 +46,10 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
     brand: string
+    subfolder: string
 }
 
-function ProductView( { brand }: Props) {
+function ProductView( { brand, subfolder }: Props) {
     const classes = useStyles();
     const { t } = useTranslation();
     const domain = 'https://tryon.looc.io';
@@ -103,7 +104,7 @@ function ProductView( { brand }: Props) {
                         allow="camera"
                         className={classes.tryonIframe}
                         title="Web-TryOn"
-                        src={`${domain}/${brand}/index.html?f=${glasses[0].identifier}`}
+                        src={`${domain}/${subfolder}/index.html?f=${glasses[0].identifier}`}
                     />
                     :
                     <CircularProgress />

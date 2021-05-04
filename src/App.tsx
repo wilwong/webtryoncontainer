@@ -36,9 +36,9 @@ const theme = createMuiTheme({
 });
 
 const brands = [
-  {title: "My LooC", term: "loocfun"},
-  {title: "Reframd", term: "reframd"},
-  {title: "DOM VETRO", term: "domvetro"},
+  {title: "My LooC", term: "loocfun", subfolder: "loocfun/fs"},
+  {title: "Reframd", term: "reframd", subfolder: "reframd"},
+  {title: "DOM VETRO", term: "domvetro", subfolder: "domvetro"},
 ]
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
           <div className="container">
             {brand
               ?
-              <ProductView brand={brand} />
+              <ProductView brand={brand} subfolder={ brands.find( b => b.term === brand)?.subfolder || 'loocfun'} />
               :
               <FormControl className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">Brand</InputLabel>
@@ -69,7 +69,7 @@ function App() {
                 >
                   <MenuItem value={undefined}>None</MenuItem>
                   {brands.map( brand =>
-                    <MenuItem value={brand.term}>{ brand.title }</MenuItem>
+                    <MenuItem key={brand.term} value={brand.term}>{ brand.title }</MenuItem>
                   )}
                 </Select>
               </FormControl>
