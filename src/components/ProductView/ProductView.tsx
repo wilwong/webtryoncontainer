@@ -51,7 +51,7 @@ type Props = {
 function ProductView( { brand }: Props) {
     const classes = useStyles();
     const { t } = useTranslation();
-    const domain = 'https://test.looc.io';
+    const domain = 'https://tryon.looc.io';
 
     const [appData, setAppData] = React.useState<AppData | undefined>(undefined);
     const [glasses, setGlasses] = React.useState<Material[] | undefined>(undefined);
@@ -102,7 +102,7 @@ function ProductView( { brand }: Props) {
                     allow="camera"
                     className={classes.tryonIframe}
                     title="Web-TryOn"
-                    src={`${domain}/forest/index.html`}
+                    src={`${domain}/reframd/index.html?c=kickstarter&f=moni`}
                 />
             </div>
         </Grid>
