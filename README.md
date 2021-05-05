@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Demo Implementation for an online shop making use of the looc.io Virtual Try-On
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To open the demo in your browser go to (https://test.looc.io/webshop/index.html)[https://test.looc.io/webshop/index.html].
 
-## Available Scripts
+## What you can see here
 
-In the project directory, you can run:
+This is a sample implementation of an online shop written in (React)[https://reactjs.org] that embeds the iFrame of the (looc.io)[https://www.looc.io] Virtual Try-On.
 
-### `yarn start`
+## How to start on your own machine
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To test this app locally, git clone the project and run
+```
+    yarn install
+    yarn start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How to interact with the Web-Try-On
 
-### `yarn test`
+The idea is to embed an iframe pointing to "tryon.looc.io/{yourbrand}" on your website.
+You can provide the initial frame, color and lens to the iFrame as search parameters, i.e.
+`?f=aviator&p=red&l=sun`, depending on the frames, materials and colors available.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you want to change the contents of the Try-On after it has finished loading, you can send messages to the iframe like so:
 
-### `yarn build`
+```{javascript}
+    const iframe = document.getElementById('Try-On-Frame') as HTMLIFrameElement
+    iframe.contentWindow?.postMessage({ type: type, id: identifier}, domain)
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+where the type can be one of the following
+- `f` for frame, with the identifier of the frame from the LooC CMS
+- `p` for plastic, with the identifier of the plastic color from the LooC CMS
+- `m` for metal, with the identifier of the metal color from the LooC CMS
+- `l` for lens, with the identifier of the lens from the LooC CMS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
