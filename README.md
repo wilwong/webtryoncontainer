@@ -1,10 +1,10 @@
 # Demo Implementation for an online shop making use of the looc.io Virtual Try-On
 
-To open the demo in your browser go to (https://test.looc.io/webshop/index.html)[https://test.looc.io/webshop/index.html].
+To open the demo in your browser go to https://test.looc.io/webshop/index.html.
 
 ## What you can see here
 
-This is a sample implementation of an online shop written in (React)[https://reactjs.org] that embeds the iFrame of the (looc.io)[https://www.looc.io] Virtual Try-On.
+This is a sample implementation of an online shop written in [React](https://reactjs.org) that embeds the iFrame of the [looc.io](https://www.looc.io) Virtual Try-On.
 
 ## How to start on your own machine
 
@@ -33,3 +33,4 @@ where the type can be one of the following
 - `m` for metal, with the identifier of the metal color from the LooC CMS
 - `l` for lens, with the identifier of the lens from the LooC CMS
 
+and `domain` has to be provided for security reasons and should be `tryon.looc.io`.
