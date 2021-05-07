@@ -105,7 +105,7 @@ function ProductView( { brand, subfolder }: Props) {
                         allow="camera"
                         className={classes.tryonIframe}
                         title="Web-TryOn"
-                        src={`${domain}/${subfolder}/index.html?f=${appData?.models[0].name}`}
+                        src={`${domain}/${subfolder}/index.html?f=${appData?.models[0].name}&c=${appData?.models[0].category}`}
                     />
                     : 
                     <> No Glasses published yet, go to <a href="https://cms.looc.io">cms.looc.io </a> and publish some frames .</>
