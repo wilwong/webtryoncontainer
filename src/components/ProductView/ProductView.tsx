@@ -55,13 +55,13 @@ function ProductView( { brand, subfolder }: Props) {
     const domain = 'https://tryon.looc.io';
 
     const [appData, setAppData] = React.useState<AppData | undefined>(undefined);
-    const [glasses, setGlasses] = React.useState<Material[] | undefined>(undefined);
+    const [lenses, setlenses] = React.useState<Material[] | undefined>(undefined);
     const [colors, setColors] = React.useState<Material[] | undefined>(undefined);
 
     React.useEffect(() => {
         const fetch = async (brand: string) => {
             const appData = await cmsGet(brand, 'app-data') as AppData
-            setGlasses(appData.materials.filter(mat => mat.type === 'glas'))
+            setlenses(appData.materials.filter(mat => mat.type === 'glas'))
             setColors(appData.materials.filter(mat => mat.type === 'plastic'))
             setAppData(appData)
         }
@@ -98,14 +98,17 @@ function ProductView( { brand, subfolder }: Props) {
         </Grid>
         <Grid item xs={9}>
             <div className={classes.tryOnContainer}>
-                {glasses ?
+                {appData?.models ?
+                    appData?.models.length > 0 ? 
                     <iframe
                         id="Try-On-Frame"
                         allow="camera"
                         className={classes.tryonIframe}
                         title="Web-TryOn"
-                        src={`${domain}/${subfolder}/index.html?f=${glasses[0].identifier}`}
+                        src={`${domain}/${subfolder}/index.html?f=${appData?.models[0].name}`}
                     />
+                    : 
+                    <> No Glasses published yet, go to <a href="https://cms.looc.io">cms.looc.io </a> and publish some frames .</>
                     :
                     <CircularProgress />
                 }
@@ -136,10 +139,10 @@ function ProductView( { brand, subfolder }: Props) {
         </Grid>
         <Grid item xs={6}>
             {
-                glasses ?
+                lenses ?
                     <ColorHList
                         brand={brand}
-                        materials={glasses}
+                        materials={lenses}
                         titleTerm="lenses.title"
                         matTapped={onGlasTapped}
                     />
