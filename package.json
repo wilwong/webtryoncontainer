@@ -2,7 +2,6 @@
   "name": "webtryoncontainer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://test.looc.io/webshop",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.11.4",
@@ -19,7 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "serve": "http-server ./build",
     "build": "react-scripts build",
+    "build:rewire": "node ./build-rewire.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "aws s3 sync build/ s3://looc-web-tests/webshop --delete --acl public-read --region eu-central-1"
@@ -41,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "rewire": "^5.0.0"
   }
 }
