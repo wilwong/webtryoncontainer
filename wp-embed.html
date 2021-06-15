@@ -1,0 +1,29 @@
+<!-- this html is meant for pasting into the WP page-->
+
+<style>
+  #loocTryon{
+    width: 100%;
+    height: 1500px;
+  }
+  #tryonBlock{
+    display:none;
+    text-align: center;
+    height: 500px;
+  }
+  @media (min-width: 1295px) {
+    #loocTryon {
+      height: 750px;
+    }
+  }
+</style>
+<p id="tryonBlock">Sorry, Virtual Try-on is currently not working on mobile devices; please try again on desktop/laptop.
+<br/><br/>
+We are working on it.</p>
+<iframe id="loocTryon" title="looc tryframe" frameBorder="0" allow="camera" src="https://reframd-looc-tryon.netlify.app/">Loading Virtual Try-on... </iframe>
+
+ <script>
+  if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    document.getElementById('tryonBlock').style.display = "block"
+    document.getElementById('loocTryon').style.display = "none"
+  }
+ </script>
