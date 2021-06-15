@@ -5,7 +5,7 @@ import Material from '../../modelTypes/Material'
 import { Button } from "@material-ui/core";
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+// import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Typography from '@material-ui/core/Typography';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
@@ -18,6 +18,8 @@ type Props = {
     matTapped: (identifier: string) => void
 }
 
+const dotRadius = 25
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -25,7 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
             flexWrap: 'wrap',
             justifyContent: 'space-around',
             overflow: 'hidden',
-            height: 132,
+            height: (dotRadius * 2 ) + 'px' ,
+            paddingBottom: theme.spacing(5)
         },
         headerTitle: {
             margin: theme.spacing(1),
@@ -41,19 +44,19 @@ const useStyles = makeStyles((theme: Theme) =>
         title: {
             color: theme.palette.primary.light,
         },
-        titleBar: {
-            background:
-                'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-        },
+        // titleBar: {
+        //     background:
+        //         'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+        // },
         optionsContainer: {
             // borderRadius: theme.spacing(1),
-            backgroundColor: theme.palette.background.paper,
+            // backgroundColor: theme.palette.background.paper,
             textAlign: 'left',
         },
         lensIconHolder: {
-            width: '132px',
-            height: '132px',
-            borderRadius: '60px',
+            width: (dotRadius * 2) + 'px',
+            height: (dotRadius * 2) + 'px',
+            borderRadius: dotRadius + 'px'
         },
         lensIcon: {
             maxWidth: '100%',
@@ -94,7 +97,7 @@ function ColorHList({ brand, materials, titleTerm, matTapped }: Props) {
     const { t, i18n: { language } } = useTranslation();
 
     return <div className={classes.optionsContainer}>
-        <Typography variant="h6" className={classes.headerTitle} align='center'>
+        <Typography variant="h4" className={classes.headerTitle} align='center'>
             {t(titleTerm, { brand: brand })}:
         </Typography>
         <div className={classes.root}>
@@ -115,18 +118,18 @@ function ColorHList({ brand, materials, titleTerm, matTapped }: Props) {
                                     :
                                     <ColorBlock material={mat} />
                             }
-                            <GridListTileBar
+                            {/* <GridListTileBar
                                 title={(mat.localizedNames && mat.localizedNames[language]) || mat.identifier}
                                 classes={{
                                     root: classes.titleBar,
                                     title: classes.title,
                                 }}
-                            // actionIcon={
-                            //     <IconButton aria-label={`star ${tile.title}`}>
-                            //         <StarBorderIcon className={classes.title} />
-                            //     </IconButton>
-                            // }
-                            />
+                            actionIcon={
+                                <IconButton aria-label={`star ${tile.title}`}>
+                                    <StarBorderIcon className={classes.title} />
+                                </IconButton>
+                            }
+                            /> */}
                         </Button>
 
                     </GridListTile>

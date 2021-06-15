@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import './ProductView.css'
+// import './ProductView.css'
 
 import ModelList from "../ModelList/ModelList"
 
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     tryOnContainer: {
         position: 'relative',
         paddingTop: '75%',
+        marginBottom: theme.spacing(5),
         width: '100%',
     },
     tryonIframe: {
@@ -116,14 +117,12 @@ function ProductView( { brand, subfolder }: Props) {
         </Grid>
         <Grid xs={12} lg={6}>
             <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                    {
-                        appData ?
-                            <ModelList brand={brand} models={appData.models} frameTapped={onFrameTapped} />
-                            :
-                            <CircularProgress />
-                    }
-                </Paper>
+                {
+                    appData ?
+                        <ModelList brand={brand} models={appData.models} frameTapped={onFrameTapped} />
+                        :
+                        <CircularProgress />
+                }
             </Grid>
             <Grid item xs={12}>
                 {
