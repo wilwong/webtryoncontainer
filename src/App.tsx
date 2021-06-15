@@ -44,18 +44,19 @@ const brands = [
 function App() {
   const classes = useStyles();
 
-  const [brand, setBrand] = React.useState<string | undefined>(undefined);
-
-  const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setBrand(event.target.value as string);
-};
+  // const [brand, setBrand] = React.useState<string | undefined>(undefined);
+  const brand = brands[1].subfolder
+  // const handleSelectChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  //   setBrand(event.target.value as string);
+  // };
 
   return (
     <div className="App">
       <header className="App-header">
         <ThemeProvider theme={theme}>
           <div className="container">
-            {brand
+            <ProductView brand={brand} subfolder={ brands.find( b => b.term === brand)?.subfolder || 'loocfun'} />
+            {/*brand
               ?
               <ProductView brand={brand} subfolder={ brands.find( b => b.term === brand)?.subfolder || 'loocfun'} />
               :
@@ -73,7 +74,7 @@ function App() {
                   )}
                 </Select>
               </FormControl>
-            }
+                  */}
             
           </div>
         </ThemeProvider>

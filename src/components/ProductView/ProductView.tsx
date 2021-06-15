@@ -91,12 +91,12 @@ function ProductView( { brand, subfolder }: Props) {
     }
 
     return <Grid container spacing={3}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
             <Typography variant="h3">
                 {t("title", { brand: brand })}
             </Typography>
-        </Grid>
-        <Grid item xs={9}>
+        </Grid> */}
+        <Grid item xs={12} lg={6}>
             <div className={classes.tryOnContainer}>
                 {appData?.models ?
                     appData?.models.length > 0 ? 
@@ -114,43 +114,46 @@ function ProductView( { brand, subfolder }: Props) {
                 }
             </div>
         </Grid>
-        <Grid item xs={3}>
-            <Paper className={classes.paper}>
+        <Grid xs={12} lg={6}>
+            <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                    {
+                        appData ?
+                            <ModelList brand={brand} models={appData.models} frameTapped={onFrameTapped} />
+                            :
+                            <CircularProgress />
+                    }
+                </Paper>
+            </Grid>
+            <Grid item xs={12}>
                 {
-                    appData ?
-                        <ModelList brand={brand} models={appData.models} frameTapped={onFrameTapped} />
+                    colors ?
+                        <ColorHList
+                            brand={brand}
+                            materials={colors}
+                            titleTerm="plasticcolors.title"
+                            matTapped={onPlasticTapped}
+                        />
                         :
                         <CircularProgress />
                 }
-            </Paper>
-        </Grid>
-        <Grid item xs={6}>
-            {
-                colors ?
-                    <ColorHList
-                        brand={brand}
-                        materials={colors}
-                        titleTerm="plasticcolors.title"
-                        matTapped={onPlasticTapped}
-                    />
-                    :
-                    <CircularProgress />
-            }
-        </Grid>
-        <Grid item xs={6}>
-            {
-                lenses ?
-                    <ColorHList
-                        brand={brand}
-                        materials={lenses}
-                        titleTerm="lenses.title"
-                        matTapped={onGlasTapped}
-                    />
-                    :
-                    <CircularProgress />
-            }
+            </Grid>
+            <Grid item xs={12}>
+                {
+                    lenses ?
+                        <ColorHList
+                            brand={brand}
+                            materials={lenses}
+                            titleTerm="lenses.title"
+                            matTapped={onGlasTapped}
+                        />
+                        :
+                        <CircularProgress />
+                }
+            </Grid>
         </Grid>
     </Grid>
+
 }
 
 export default ProductView;

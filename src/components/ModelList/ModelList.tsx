@@ -27,17 +27,22 @@ const useStyles = makeStyles((theme) => ({
     tileImg: {
         width: '100%',
     },
+    optionsContainer: {
+        borderRadius: theme.spacing(1),
+        backgroundColor: theme.palette.background.paper,
+        textAlign: 'left',
+    },
     gridList: {
-        width: 300,
-        [theme.breakpoints.down('sm')]: {
-            maxHeight: 420,
-          },
-          [theme.breakpoints.up('md')]: {
-            maxHeight: 620,
-          },
-          [theme.breakpoints.up('lg')]: {
-            maxHeight: 720,
-          },
+        // width: 300,
+        // [theme.breakpoints.down('sm')]: {
+        //     maxHeight: 420,
+        //   },
+        //   [theme.breakpoints.up('md')]: {
+        //     maxHeight: 620,
+        //   },
+        //   [theme.breakpoints.up('lg')]: {
+        //     maxHeight: 720,
+        //   },
         height: '100%',
     },
 }));
@@ -48,11 +53,12 @@ function ModelList( { brand, models, frameTapped }: Props) {
 
     const { t, i18n: { language } } = useTranslation();
 
-    return <div className={classes.root}>
-        <Typography variant="h6">
+    return <div className={classes.optionsContainer}>
+        <Typography variant="h6" align='center'>
             {t("models.title")}:
         </Typography>
-        <GridList cellHeight={180} className={classes.gridList} cols={1}>
+        <div className={classes.root}>
+        <GridList className={classes.gridList} cols={4}>
             {models.map((model) => (
                 <GridListTile
                     key={model.name}
@@ -64,7 +70,7 @@ function ModelList( { brand, models, frameTapped }: Props) {
                         onClick={() => frameTapped(model.name)}
                         style={{padding: '0px 0px'}}
                     >
-                        <img className={classes.tileImg} src={model.image} alt={model.name} />
+                        <img className={classes.tileImg} src={model.image} alt={model.name} height={180}/>
                         <GridListTileBar
                             title={(model.localizedNames && model.localizedNames[language]) || model.name}
                             subtitle={<span>{t('model.subtitle', { brand: brand })}</span>}
@@ -78,6 +84,7 @@ function ModelList( { brand, models, frameTapped }: Props) {
                 </GridListTile>
             ))}
         </GridList>
+        </div>
     </div>
 }
 

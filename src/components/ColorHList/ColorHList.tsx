@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'start',
+            justifyContent: 'space-around',
             overflow: 'hidden',
             height: 132,
         },
@@ -88,7 +88,7 @@ function ColorHList({ brand, materials, titleTerm, matTapped }: Props) {
     const { t, i18n: { language } } = useTranslation();
 
     return <div className={classes.optionsContainer}>
-        <Typography variant="h6" className={classes.headerTitle}>
+        <Typography variant="h6" className={classes.headerTitle} align='center'>
             {t(titleTerm, { brand: brand })}:
         </Typography>
         <div className={classes.root}>

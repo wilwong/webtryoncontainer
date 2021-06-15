@@ -3,7 +3,7 @@ export const en = {
 
 	"title": "Product Catalogue of {{brand}}",
 
-	"models.title": "Frames",
+	"models.title": "Designs",
 	"lenses.title": "Lenses",
 	"plasticcolors.title": "Colors",
 
