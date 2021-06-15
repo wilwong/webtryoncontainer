@@ -114,7 +114,7 @@ function ColorHList({ brand, materials, titleTerm, matTapped }: Props) {
                         >
                             {
                                 mat.image ?
-                                    <img className={classes.tileImg} src={mat.image} alt={mat.identifier} />
+                                    <img className={classes.tileImg} src={mat.image} alt={mat.identifier + ' ' + mat.localizedNames[language]} />
                                     :
                                     <ColorBlock material={mat} />
                             }
