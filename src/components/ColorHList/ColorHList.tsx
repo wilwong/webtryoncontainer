@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
         },
         optionsContainer: {
-            borderRadius: theme.spacing(1),
+            // borderRadius: theme.spacing(1),
             backgroundColor: theme.palette.background.paper,
             textAlign: 'left',
         },
@@ -68,18 +68,24 @@ const useStyles = makeStyles((theme: Theme) =>
 function ColorBlock({material}: {material: Material}) {
     const classes = useStyles();
 
-    if (material.type === 'glas') {
-        return <div className={classes.lensIconHolder} style={{backgroundColor: material.parameters.hexValue}}>
-            <img src={lens_icon} alt='lens' className={classes.lensIcon} />  
-        </div>
-    } else {
-        return <div style= {{
-            minHeight: '132px',
-            width: '100%',
-            height: '100%',
-            backgroundColor: material.parameters.hexValue
-        }} />    
-    }
+    return <div className={classes.lensIconHolder} style={{backgroundColor: material.parameters.hexValue}}>
+        {
+            (material.type === 'glas') &&
+            <img src={lens_icon} alt='lens' className={classes.lensIcon} />
+        }
+    </div>
+    // if (material.type === 'glas') {
+        // return <div className={classes.lensIconHolder} style={{backgroundColor: material.parameters.hexValue}}>
+        //     <img src={lens_icon} alt='lens' className={classes.lensIcon} />  
+        // </div>
+    // } else {
+    //     return <div style= {{
+    //         minHeight: '132px',
+    //         width: '100%',
+    //         height: '100%',
+    //         backgroundColor: material.parameters.hexValue
+    //     }} />    
+    // }
 }
 
 function ColorHList({ brand, materials, titleTerm, matTapped }: Props) {

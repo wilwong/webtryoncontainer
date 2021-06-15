@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 0,
         border: 'none',
-        borderRadius: theme.spacing(1),
+        // borderRadius: theme.spacing(1),
         overflow: 'hidden'
     }
 }));

@@ -18,7 +18,7 @@ type Props = {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        borderRadius: theme.spacing(1),
+        // borderRadius: theme.spacing(1),
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
     },
     optionsContainer: {
-        borderRadius: theme.spacing(1),
+        // borderRadius: theme.spacing(1),
         backgroundColor: theme.palette.background.paper,
         textAlign: 'left',
     },
