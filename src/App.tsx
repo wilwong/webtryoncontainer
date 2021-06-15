@@ -42,7 +42,7 @@ const brands = [
 ]
 
 function App() {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   // const [brand, setBrand] = React.useState<string | undefined>(undefined);
   const brand = brands[1].subfolder
